@@ -1,5 +1,5 @@
 module "github_oidc_iam_role" {
-  source = "../../modules/terraform-aws-iam-6.4.0/modules/iam-role"
+  source = "../modules/terraform-aws-iam-6.4.0/modules/iam-role"
 
   name = "${var.project_name}-oidc-role"
   use_name_prefix = false

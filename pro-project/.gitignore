@@ -1,0 +1,71 @@
+######################################
+# Terraform Core
+######################################
+
+# Terraform working directory
+.terraform/
+
+# Terraform state files (CRITICAL)
+*.tfstate
+*.tfstate.*
+*.tfstate.backup
+
+# Terraform plan files
+*.tfplan
+plan.out
+
+# Crash logs
+crash.log
+crash.*.log
+
+######################################
+# Backend & Local Config
+######################################
+
+# Local backend files (if ever created)
+backend.hcl
+
+# Terraform CLI config files
+.terraformrc
+terraform.rc
+
+######################################
+# Variable files (may contain secrets)
+######################################
+
+# Ignore sensitive tfvars only
+*.secrets.tfvars
+*.private.tfvars
+
+# If you want to allow example files:
+!*.example.tfvars
+
+######################################
+# Environment / Secret Files
+######################################
+
+.env
+.env.*
+*.pem
+*.key
+*.crt
+*.p12
+
+######################################
+# Editor / OS
+######################################
+
+# macOS
+.DS_Store
+
+# VSCode
+.vscode/
+
+# JetBrains
+.idea/
+
+######################################
+# Logs
+######################################
+
+*.log
