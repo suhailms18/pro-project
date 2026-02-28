@@ -19,6 +19,10 @@ jobs:
     name: Terraform Deploy
     runs-on: ubuntu-latest
 
+    defaults:
+      run:
+        working-directory: ./pro-project/github-oidc
+
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v4
