@@ -7,7 +7,7 @@ on:
     paths:
       - 'pro-project/github-oidc/**'
       - 'backend/**'
-  pull_request:
+  # pull_request:
 
 permissions:
   id-token: write
