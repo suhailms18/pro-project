@@ -52,13 +52,7 @@ jobs:
           terraform_version: 1.14.5
 
       - name: Terraform Init
-        run: |
-          terraform init -reconfigure \
-            -backend-config="bucket=${{ secrets.TF_BACKEND_BUCKET }}" \
-            -backend-config="key=${{ matrix.backend_key }}" \
-            -backend-config="region=${{ env.AWS_REGION }}" \
-            -backend-config="encrypt=true" \
-            -backend-config="use_lockfile=true"
+        run: terraform init -reconfigure -backend-config=bucket=${{ secrets.TF_BACKEND_BUCKET }} -backend-config=key=${{ matrix.backend_key }} -backend-config=region=${{ env.AWS_REGION }} -backend-config=encrypt=true -backend-config=use_lockfile=true
 
       - name: Terraform Validate
         run: terraform validate
