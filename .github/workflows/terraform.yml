@@ -36,7 +36,7 @@ jobs:
 
       - name: Terraform Init
         run: |
-          terraform init \
+          terraform init -reconfigure \
             -backend-config="bucket=${{ secrets.TF_BACKEND_BUCKET }}" \
             -backend-config="key=${{ env.TF_BACKEND_KEY }}" \
             -backend-config="region=${{ env.AWS_REGION }}" \
