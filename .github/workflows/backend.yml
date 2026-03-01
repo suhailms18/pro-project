@@ -12,7 +12,7 @@ permissions:
 
 env:
   AWS_REGION: us-east-1
-  TF_BACKEND_KEY: pro-project/terraform.tfstate
+  TF_BACKEND_KEY: backend/terraform.tfstate
 
 jobs:
   terraform:
@@ -21,7 +21,7 @@ jobs:
 
     defaults:
       run:
-        working-directory: ./pro-project/github-oidc
+        working-directory: ./backend
 
     steps:
       - name: Checkout Repository
@@ -30,7 +30,7 @@ jobs:
       - name: Configure AWS Credentials (OIDC)
         uses: aws-actions/configure-aws-credentials@v4
         with:
-          role-to-assume: arn:aws:iam::136518012363:role/pro-project-oidc-role
+          role-to-assume: arn:aws:iam::${{ secrets.AWS_ACCOUNT_ID }}:role/pro-project-oidc-role
           aws-region: ${{ env.AWS_REGION }}
 
       - name: Setup Terraform
@@ -51,8 +51,8 @@ jobs:
         run: terraform validate
 
       - name: Terraform Plan
-        run: terraform plan -var-file=variables/pro_project.tfvars
+        run: terraform plan -var-file=variables/backend.tfvars
 
       - name: Terraform Apply
         if: github.ref == 'refs/heads/master'
-        run: terraform apply -auto-approve -var-file=variables/pro_project.tfvars
+        run: terraform apply -auto-approve -var-file=variables/backend.tfvars
