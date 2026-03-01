@@ -6,10 +6,15 @@ module "cli_user" {
   create_login_profile = false
   create_access_key    = true
 
-  create_inline_policy = false
-
-  policies = {
-    assume_role = data.aws_iam_policy_document.cli_assumer_trust_policy.json
+  create_inline_policy = true
+  inline_policy_permissions = {
+    AssumeRoleAccess = {
+      effect = "Allow"
+      actions = ["sts:AssumeRole"]
+      resources = [
+        module.admin_role.arn
+      ]
+    }
   }
   
 
@@ -18,16 +23,5 @@ module "cli_user" {
     ManagedBy   = "Terraform"
     Project     = "pro-project"
     Purpose     = "Admin Role"
-  }
-}
-
-data "aws_iam_policy_document" "cli_assumer_trust_policy" {
-  statement {
-    effect  = "Allow"
-    actions = ["sts:AssumeRole"]
-
-    resources = [
-      module.admin_role.arn
-    ]
   }
 }
