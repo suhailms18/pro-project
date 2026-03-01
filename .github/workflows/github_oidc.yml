@@ -4,7 +4,11 @@ on:
   push:
     branches:
       - master
+    paths:
+      - 'pro-project/github-oidc/**'
   pull_request:
+    paths:
+      - 'pro-project/github-oidc/**'
 
 permissions:
   id-token: write
