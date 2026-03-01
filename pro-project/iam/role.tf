@@ -28,6 +28,4 @@ module "admin_role" {
     Project     = "pro-project"
     Purpose     = "Admin Role"
   }
-
-  depends_on = [module.cli_user]
 }
