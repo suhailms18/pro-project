@@ -23,15 +23,11 @@ module "cli_user" {
 
 data "aws_iam_policy_document" "cli_assumer_trust_policy" {
   statement {
-    effect = "Allow"
-
-    principals {
-      type        = "AWS"
-      identifiers = [
-        module.admin_role.arn
-      ]
-    }
-
+    effect  = "Allow"
     actions = ["sts:AssumeRole"]
+
+    resources = [
+      module.admin_role.arn
+    ]
   }
 }
