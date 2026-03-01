@@ -4,7 +4,19 @@ module "admin_role" {
   name = "${var.project_name}-admin-role"
   use_name_prefix = false
 
-  trust_policy_permissions = data.aws_iam_policy_document.admin_role_trust_policy.json
+  trust_policy_permissions = {
+    allow_user = {
+      sid     = "AllowUserAssumeRole"
+      actions = ["sts:AssumeRole"]
+
+      principals = [
+        {
+          type        = "AWS"
+          identifiers = [module.cli_user.arn]
+        }
+      ]
+    }
+  }
 
   policies = {
     AdministratorAccess = "arn:aws:iam::aws:policy/AdministratorAccess"
@@ -18,17 +30,4 @@ module "admin_role" {
   }
 
   depends_on = [module.cli_user]
-}
-
-data "aws_iam_policy_document" "admin_role_trust_policy" {
-  statement {
-    sid     = "AllowUserAssumeRole"
-    effect  = "Allow"
-    actions = ["sts:AssumeRole"]
-
-    principals {
-      type        = "AWS"
-      identifiers = [module.cli_user.arn]
-    }
-  }
 }
