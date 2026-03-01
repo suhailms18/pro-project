@@ -16,7 +16,7 @@ permissions:
 
 env:
   AWS_REGION: us-east-1
-  TF_BACKEND_KEY: pro-project/terraform.tfstate
+  TF_BACKEND_KEY: pro-project/github-oidc/terraform.tfstate
 
 jobs:
   terraform:
