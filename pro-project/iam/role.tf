@@ -28,7 +28,7 @@ data "aws_iam_policy_document" "admin_role_trust_policy" {
 
     principals {
       type        = "AWS"
-      identifiers = [module.iam_user.iam_user_arn]
+      identifiers = [module.cli_user.arn]
     }
   }
 }
