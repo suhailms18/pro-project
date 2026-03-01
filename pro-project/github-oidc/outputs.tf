@@ -5,3 +5,4 @@ output "role_name" {
 output "role_arn" {
   value = module.github_oidc_iam_role.arn
 }
+
