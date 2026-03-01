@@ -8,7 +8,7 @@ module "cli_user" {
 
   create_inline_policy = false
 
-#   policies = data.aws_iam_policy_document.cli_assumer_trust_policy.json
+  policies = data.aws_iam_policy_document.cli_assumer_trust_policy.json
   
 
   tags = {
@@ -19,17 +19,17 @@ module "cli_user" {
   }
 }
 
-# data "aws_iam_policy_document" "cli_assumer_trust_policy" {
-#   statement {
-#     effect = "Allow"
+data "aws_iam_policy_document" "cli_assumer_trust_policy" {
+  statement {
+    effect = "Allow"
 
-#     principals {
-#       type        = "AWS"
-#       identifiers = [
-#         module.admin_role.arn
-#       ]
-#     }
+    principals {
+      type        = "AWS"
+      identifiers = [
+        module.admin_role.arn
+      ]
+    }
 
-#     actions = ["sts:AssumeRole"]
-#   }
-# }
+    actions = ["sts:AssumeRole"]
+  }
+}
