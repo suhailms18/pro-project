@@ -8,7 +8,9 @@ module "cli_user" {
 
   create_inline_policy = false
 
-  policies = data.aws_iam_policy_document.cli_assumer_trust_policy.json
+  policies = {
+    assume_role = data.aws_iam_policy_document.cli_assumer_trust_policy.json
+  }
   
 
   tags = {
