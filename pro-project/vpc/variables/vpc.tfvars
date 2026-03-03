@@ -1,4 +1,5 @@
 aws_region      = "us-east-1"
+project_name = "pro-project"
 environment = "dev"
 name        = "use1-${data.aws_caller_identity.current.account_id}"
 eks_cluster_name = null

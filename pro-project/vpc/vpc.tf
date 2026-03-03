@@ -1,5 +1,5 @@
 module "vpc" {
-  source = "../../terraform-aws-vpc-6.6.0"
+  source = "../../modules/terraform-aws-vpc-6.6.0"
 
   name = var.name
   cidr = var.vpc_cidr
@@ -29,9 +29,9 @@ module "vpc" {
   } : {}
 
   tags = {
-    Name        = "${var.project_name}-cli-assumer"
+    Name        = "${var.name}"
     ManagedBy   = "Terraform"
-    Project     = "pro-project"
-    Purpose     = "Admin Role"
+    Project     = "${var.project_name}"
+    Purpose     = "Dedicated VPC"
   }
 }
