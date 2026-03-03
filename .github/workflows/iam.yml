@@ -53,6 +53,9 @@ jobs:
 
       - name: Terraform Validate
         run: terraform validate
+      
+      - name: Terraform Format
+        run: terraform fmt -recursive
 
       - name: Terraform Plan
         run: terraform plan -var-file=variables/iam.tfvars
