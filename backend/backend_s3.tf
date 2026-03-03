@@ -23,7 +23,7 @@ module "terraform_state_bucket" {
   tags = {
     Name        = "${var.project_name}-state-bucket-${data.aws_caller_identity.current.account_id}"
     ManagedBy   = "Terraform"
-    Project     = "pro-project"
+    Project     = "${var.project_name}"
     Purpose     = "Terraform Backend S3 Bucket"
   }
 }

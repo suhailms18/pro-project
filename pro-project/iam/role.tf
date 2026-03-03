@@ -25,7 +25,7 @@ module "admin_role" {
   tags = {
     Name        = "${var.project_name}-admin-role"
     ManagedBy   = "Terraform"
-    Project     = "pro-project"
+    Project     = "${var.project_name}"
     Purpose     = "Admin Role"
   }
 }

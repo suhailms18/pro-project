@@ -18,7 +18,7 @@ module "github_oidc_iam_role" {
   tags = {
     Name        = "${var.project_name}-oidc-role"
     ManagedBy   = "Terraform"
-    Project     = "pro-project"
+    Project     = "${var.project_name}"
     Purpose     = "GitHub OIDC Role"
   }
 }

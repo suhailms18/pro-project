@@ -21,7 +21,7 @@ module "cli_user" {
   tags = {
     Name        = "${var.project_name}-cli-assumer"
     ManagedBy   = "Terraform"
-    Project     = "pro-project"
+    Project     = "${var.project_name}"
     Purpose     = "Admin Role"
   }
 }
