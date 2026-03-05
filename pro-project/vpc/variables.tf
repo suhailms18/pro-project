@@ -73,6 +73,12 @@ variable "one_nat_gateway_per_az" {
   description = "One NAT per AZ"
 }
 
+variable "create_security_group" {
+  description = "Determines if a security group is created"
+  type        = bool
+  default     = false
+}
+
 variable "security_group_name" {
   description = "Name to use on security group created. Conflicts with `security_group_name_prefix`"
   type        = string

@@ -28,7 +28,7 @@ enable_nat_gateway     = false
 single_nat_gateway     = true
 one_nat_gateway_per_az = false
 
-vpce_create_security_group = true
+create_security_group = true
 security_group_description = "vpc endpoint security group"
 security_group_name = "vpce-sg"
 
@@ -56,6 +56,5 @@ vpc_endpoints = {
   s3 = {
     service      = "s3"
     service_type = "Gateway"
-    route_table_ids = [module.vpc.private_route_table_ids, module.vpc.public_route_table_ids]
   }
 }

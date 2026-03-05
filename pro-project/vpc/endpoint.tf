@@ -4,7 +4,7 @@ module "vpc_endpoints" {
   vpc_id     = module.vpc.vpc_id
   subnet_ids = module.vpc.private_subnets
 
-  create_security_group      = true
+  create_security_group      = var.create_security_group
   security_group_description = "Security group for EKS VPC endpoints"
   security_group_name = var.security_group_name
 
@@ -19,7 +19,18 @@ module "vpc_endpoints" {
     }
   }
 
-  endpoints = var.vpc_endpoints
+  endpoints = {
+    for k, v in var.vpc_endpoints :
+    k => merge(
+      v,
+      try(v.service_type, "Interface") == "Gateway" ? {
+        route_table_ids = concat(
+          module.vpc.private_route_table_ids,
+          module.vpc.public_route_table_ids
+        )
+      } : {}
+    )
+  }
 
   tags = {
     Project   = "pro-project"
