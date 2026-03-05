@@ -5,7 +5,7 @@ module "vpc_endpoints" {
   subnet_ids = module.vpc.private_subnets
 
   create_security_group      = var.create_security_group
-  security_group_description = "Security group for EKS VPC endpoints"
+  security_group_description = var.security_group_description
   security_group_name = var.security_group_name
 
   security_group_rules = {
