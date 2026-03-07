@@ -79,17 +79,6 @@ variable "create_security_group" {
   default     = false
 }
 
-variable "security_group_name" {
-  description = "Name to use on security group created. Conflicts with `security_group_name_prefix`"
-  type        = string
-}
-
-variable "security_group_description" {
-  description = "Description of the security group created"
-  type        = string
-}
-
-
 variable "vpc_endpoints" {
   type = map(any)
 }

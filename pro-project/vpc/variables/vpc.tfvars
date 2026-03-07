@@ -28,10 +28,6 @@ enable_nat_gateway     = false
 single_nat_gateway     = true
 one_nat_gateway_per_az = false
 
-create_security_group = true
-security_group_description = "vpc endpoint security group"
-security_group_name = "vpce-sg"
-
 vpc_endpoints = {
   ecr_api = {
     service = "ecr.api"
