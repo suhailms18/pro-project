@@ -4,7 +4,7 @@ variable "aws_region" {
 }
 
 variable "project_name" {
-  description = "AWS region"
+  description = "Project Name"
   type        = string
 }
 
