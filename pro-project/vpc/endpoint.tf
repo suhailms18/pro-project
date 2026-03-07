@@ -1,29 +1,29 @@
-module "vpc_endpoints" {
-  source = "../../modules/terraform-aws-vpc-6.6.0/modules/vpc-endpoints"
+# module "vpc_endpoints" {
+#   source = "../../modules/terraform-aws-vpc-6.6.0/modules/vpc-endpoints"
 
-  vpc_id     = module.vpc.vpc_id
-  subnet_ids = module.vpc.private_subnets
+#   vpc_id     = module.vpc.vpc_id
+#   subnet_ids = module.vpc.private_subnets
 
-  endpoints = {
-    for k, v in var.vpc_endpoints :
-    k => merge(
-      v,
+#   endpoints = {
+#     for k, v in var.vpc_endpoints :
+#     k => merge(
+#       v,
 
-      try(v.service_type, "Interface") != "Gateway" ? {
-        security_group_ids = [module.vpce_sg[k].security_group_id]
-      } : {},
+#       try(v.service_type, "Interface") != "Gateway" ? {
+#         security_group_ids = [module.vpce_sg[k].security_group_id]
+#       } : {},
 
-      try(v.service_type, "Interface") == "Gateway" ? {
-        route_table_ids = concat(
-          module.vpc.private_route_table_ids,
-          module.vpc.public_route_table_ids
-        )
-      } : {}
-    )
-  }
+#       try(v.service_type, "Interface") == "Gateway" ? {
+#         route_table_ids = concat(
+#           module.vpc.private_route_table_ids,
+#           module.vpc.public_route_table_ids
+#         )
+#       } : {}
+#     )
+#   }
 
-  tags = {
-    Project   = "pro-project"
-    ManagedBy = "Terraform"
-  }
-}
+#   tags = {
+#     Project   = "pro-project"
+#     ManagedBy = "Terraform"
+#   }
+# }
