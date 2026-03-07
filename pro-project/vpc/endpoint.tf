@@ -4,7 +4,7 @@ module "vpc_endpoints" {
   vpc_id     = module.vpc.vpc_id
   subnet_ids = module.vpc.private_subnets
 
-  security_group_ids = ["${module.vpce_sg.security_group_id}"]
+  security_group_ids = [module.vpce_sg[each.key].security_group_id]
 
   endpoints = {
     for k, v in var.vpc_endpoints :
